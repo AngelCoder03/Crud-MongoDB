@@ -72,7 +72,19 @@ const encontrarLibroPorId = async(id:string) =>{
   }
 }
 
+const obtenerTodosLosLibros = async () => {
+  try {
+    const resultado = await libroModelo.find();
+    console.log(" Libros encontrados:", resultado);
+  } catch (error) {
+    console.error(" Error al obtener los libros:", error);
+  }
+};
+
+
 connectDB()
 /* createLibro()
 borrarLibroById('6805a22ecf88e555b5cd2cb5') 
-*/
+
+encontrarLibroPorId('6805a25e2b296a1ac59b0d94')*/
+obtenerTodosLosLibros()
