@@ -46,5 +46,33 @@ const createLibro = async () => {
     }
   };
 
+const borrarLibroById = async(id:string) =>{
+  try {
+    const resultado = await libroModelo.findByIdAndDelete(id)
+    if (resultado){
+      console.log("Libro eliminado exitosamente.")
+    }else{
+      console.log("No se encontro ningun libro con el id correspondiente.")
+    }
+  } catch (error) {
+      console.error("Error al eliminar el libro",error)
+    }
+}
+
+const encontrarLibroPorId = async(id:string) =>{
+  try {
+    const resultado = await libroModelo.findById(id)
+    if (resultado){
+      console.log(`Libro encontrado exitosamente : ${resultado}`)
+    }else{
+      console.log("No se encuentra ningun libro con ese id.")
+    }
+  } catch (error) {
+      console.error("Error al intentar encontrar el libro.",error)
+  }
+}
+
 connectDB()
-createLibro()
+/* createLibro()
+borrarLibroById('6805a22ecf88e555b5cd2cb5') 
+*/
