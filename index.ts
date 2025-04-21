@@ -79,7 +79,25 @@ const obtenerTodosLosLibros = async () => {
   } catch (error) {
     console.error(" Error al obtener los libros:", error);
   }
+}
+
+const actualizarLibro = async (id: string, nuevosDatos: Partial<libroInterface>) => {
+  try {
+    const libroActualizado = await libroModelo.findByIdAndUpdate(id, nuevosDatos, {
+      new: true,
+      runValidators: true 
+    });
+
+    if (libroActualizado) {
+      console.log(" Libro actualizado con éxito:", libroActualizado);
+    } else {
+      console.log(" No se encontró ningún libro con ese ID.");
+    }
+  } catch (error) {
+    console.error(" Error al actualizar el libro:", error);
+  }
 };
+
 
 
 connectDB()
@@ -88,3 +106,4 @@ borrarLibroById('6805a22ecf88e555b5cd2cb5')
 
 encontrarLibroPorId('6805a25e2b296a1ac59b0d94')*/
 obtenerTodosLosLibros()
+actualizarLibro('68059dfe73ddac4f267eadc5',{titulo:"Holanda"})
